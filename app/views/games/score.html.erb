@@ -1,0 +1,13 @@
+<h1>Result</h1>
+<% if @result == 'valid' %>
+    <p><strong>Congratulations! </strong><%= @word %> is a valid english word! Your score is <%= @total_score %></p>
+  <% elsif @result == 'not a word' %>
+    <p>Sorry but <strong><%= @word %></strong> does not seem to be a valid english word. Your score is <%= @total_score %></p>
+  <% else %>
+    <p>Sorry but <strong><%= @word %></strong> can't be build out of
+      <% @grid.each do |letter| %>
+        <%= "#{letter}," %>
+      <% end %> Your score is <%= @total_score %></p>
+<% end %>
+
+<%= link_to 'Play again', new_path %>

@@ -14,7 +14,6 @@ class GamesController < ApplicationController
     if @valid_attempt['found'] && can_be_build?(@word, @grid)
       @result = 'valid'
       @score = @word.length
-      session[:score] = session[:score].nil? ? 0 : session[:score] + @score
     elsif @valid_attempt['found'] == false
       @result = 'not a word'
       @score = 0
@@ -22,6 +21,7 @@ class GamesController < ApplicationController
       @result = 'not in the grid'
       @score = 0
     end
+    session[:score] = session[:score].nil? ? @score : session[:score] + @score
     @total_score = session[:score]
   end
 
